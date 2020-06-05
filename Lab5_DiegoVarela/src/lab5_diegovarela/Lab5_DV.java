@@ -414,6 +414,11 @@ public class Lab5_DV extends javax.swing.JFrame {
         rb_villanos.setText("Villanos");
 
         jl_escuadrones.setModel(new DefaultListModel());
+        jl_escuadrones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_escuadronesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jl_escuadrones);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Escuadrones");
@@ -864,10 +869,15 @@ public class Lab5_DV extends javax.swing.JFrame {
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 if (raiz.getChildAt(i).toString().
                         equals(tf_escun.getText())) {
+                      DefaultMutableTreeNode s
+                            = new DefaultMutableTreeNode(
+                                    ((Villano) cb_villano.getSelectedItem()).getDebilidad()
+                            );
                     DefaultMutableTreeNode p
                             = new DefaultMutableTreeNode(
-                                    (Villano) cb_villano.getSelectedItem()
+                                    ((Villano) cb_villano.getSelectedItem()).getNombre()
                             );
+                     p.add(s);
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                 } //fin if
             } //fin for  
@@ -1093,6 +1103,17 @@ persona_seleccionada.getEscuadron().setLider(persona_seleccionada);
                 break;
         }
     }//GEN-LAST:event_jb_simulacionMouseClicked
+
+    private void jl_escuadronesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_escuadronesMouseClicked
+        // TODO add your handling code here:
+         if (jl_escuadrones.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()) {
+                menuescuadrones.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+
+            }
+        }
+    }//GEN-LAST:event_jl_escuadronesMouseClicked
 
     /**
      * @param args the command line arguments
