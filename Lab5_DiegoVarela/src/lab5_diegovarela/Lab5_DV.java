@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 /**
  *
@@ -1007,6 +1008,7 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void AsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AsignarActionPerformed
         // TODO add your handling code here:
+persona_seleccionada.getEscuadron().setLider(persona_seleccionada);
     }//GEN-LAST:event_AsignarActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
@@ -1033,34 +1035,38 @@ public class Lab5_DV extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Fuerza 1:" + f + "\nFuerza 2:" + f2);
                 if (f > f2) {
                     JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron1.getSelectedItem()).getNombre());
-                        DefaultListModel modelo
-                    = (DefaultListModel) jl_escuadrones.getModel();
-                        modelo.remove(cb_escuadron2.getSelectedIndex());
-                        jl_escuadrones.setModel(modelo);                               
+                    DefaultListModel modelo
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    modelo.remove(cb_escuadron2.getSelectedIndex());
+                    jl_escuadrones.setModel(modelo);
+                    escuadrones.remove(cb_escuadron2.getSelectedIndex());
                 } else if (f2 > f) {
                     JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron2.getSelectedItem()).getNombre());
-                       DefaultListModel modelo
-                    = (DefaultListModel) jl_escuadrones.getModel();
-                        modelo.remove(cb_escuadron1.getSelectedIndex());
-                        jl_escuadrones.setModel(modelo);
+                    DefaultListModel modelo
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    modelo.remove(cb_escuadron1.getSelectedIndex());
+                    jl_escuadrones.setModel(modelo);
+                    escuadrones.remove(cb_escuadron1.getSelectedIndex());
                 } else if (f == f2) {
                     JOptionPane.showMessageDialog(null, "Es un empate");
                 }
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, "Agilidad mental 1:" + am2 + "\nAgilidad mental 2:" + am2);
-                if (am>am2) {
+                if (am > am2) {
                     JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron1.getSelectedItem()).getNombre());
-                       DefaultListModel modelo
-                    = (DefaultListModel) jl_escuadrones.getModel();
-                        modelo.remove(cb_escuadron2.getSelectedIndex());
-                        jl_escuadrones.setModel(modelo);
+                    DefaultListModel modelo
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    modelo.remove(cb_escuadron2.getSelectedIndex());
+                    jl_escuadrones.setModel(modelo);
+                    escuadrones.remove(cb_escuadron2.getSelectedIndex());
                 } else if (am2 > am) {
                     JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron2.getSelectedItem()).getNombre());
-                      DefaultListModel modelo
-                    = (DefaultListModel) jl_escuadrones.getModel();
-                        modelo.remove(cb_escuadron1.getSelectedIndex());
-                        jl_escuadrones.setModel(modelo);
+                    DefaultListModel modelo
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    modelo.remove(cb_escuadron1.getSelectedIndex());
+                    jl_escuadrones.setModel(modelo);
+                    escuadrones.remove(cb_escuadron1.getSelectedIndex());
                 } else if (am == am2) {
                     JOptionPane.showMessageDialog(null, "Es un empate");
                 }
@@ -1069,16 +1075,18 @@ public class Lab5_DV extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Agilidad fisica 1:" + af + "\nAgilidad fisica 2:" + af2);
                 if (af > af2) {
                     JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron1.getSelectedItem()).getNombre());
-                       DefaultListModel modelo
-                    = (DefaultListModel) jl_escuadrones.getModel();
-                        modelo.remove(cb_escuadron2.getSelectedIndex());
-                        jl_escuadrones.setModel(modelo);
+                    DefaultListModel modelo
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    modelo.remove(cb_escuadron2.getSelectedIndex());
+                    jl_escuadrones.setModel(modelo);
+                    escuadrones.remove(cb_escuadron2.getSelectedIndex());
                 } else if (af2 > af) {
                     JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron2.getSelectedItem()).getNombre());
-                      DefaultListModel modelo
-                    = (DefaultListModel) jl_escuadrones.getModel();
-                        modelo.remove(cb_escuadron1.getSelectedIndex());
-                        jl_escuadrones.setModel(modelo);
+                    DefaultListModel modelo
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    modelo.remove(cb_escuadron1.getSelectedIndex());
+                    jl_escuadrones.setModel(modelo);
+                    escuadrones.remove(cb_escuadron1.getSelectedIndex());
                 } else if (af == af2) {
                     JOptionPane.showMessageDialog(null, "Es un empate");
                 }
