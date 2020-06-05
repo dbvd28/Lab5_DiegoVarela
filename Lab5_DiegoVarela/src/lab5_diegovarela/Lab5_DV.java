@@ -6,8 +6,11 @@
 package lab5_diegovarela;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -17,8 +20,9 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     static ArrayList<Escuadron> escuadrones = new ArrayList();
     static ArrayList<String> nombres = new ArrayList();
-  static ArrayList<Villano> villanos = new ArrayList();
+    static ArrayList<Villano> villanos = new ArrayList();
     static ArrayList<Heroe> heroes = new ArrayList();
+
     /**
      * Creates new form Lab5_DV
      */
@@ -42,6 +46,21 @@ public class Lab5_DV extends javax.swing.JFrame {
         menuvillano = new javax.swing.JPopupMenu();
         Modificar1 = new javax.swing.JMenuItem();
         Elminar1 = new javax.swing.JMenuItem();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        Heroes = new javax.swing.JFrame();
+        jb_agrhero = new javax.swing.JButton();
+        cb_heroes = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        Villanos = new javax.swing.JFrame();
+        jb_agrvill = new javax.swing.JButton();
+        cb_villano = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        menuescuadrones = new javax.swing.JPopupMenu();
+        Modificar2 = new javax.swing.JMenuItem();
+        Eliminar2 = new javax.swing.JMenuItem();
+        Menutree = new javax.swing.JPopupMenu();
+        Asignar = new javax.swing.JMenuItem();
+        Datos = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,7 +73,6 @@ public class Lab5_DV extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -64,15 +82,33 @@ public class Lab5_DV extends javax.swing.JFrame {
         tf_nombre = new javax.swing.JTextField();
         tf_poder = new javax.swing.JTextField();
         tf_debilidad = new javax.swing.JTextField();
-        cb_escuadron = new javax.swing.JComboBox<>();
         jb_agregarsuper = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         rb_villano = new javax.swing.JRadioButton();
         rb_superheroe = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        rb_heroes = new javax.swing.JRadioButton();
+        rb_villanos = new javax.swing.JRadioButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_escuadrones = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jt_escuadrones = new javax.swing.JTree();
+        tf_base = new javax.swing.JTextField();
+        tf_escun = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jb_agregarescuadron = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
         menuheroe.add(Modificar);
 
         Eliminar.setText("Eliminar");
@@ -84,6 +120,11 @@ public class Lab5_DV extends javax.swing.JFrame {
         menuheroe.add(Eliminar);
 
         Modificar1.setText("Modificar");
+        Modificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Modificar1ActionPerformed(evt);
+            }
+        });
         menuvillano.add(Modificar1);
 
         Elminar1.setText("Eliminar");
@@ -93,6 +134,100 @@ public class Lab5_DV extends javax.swing.JFrame {
             }
         });
         menuvillano.add(Elminar1);
+
+        jb_agrhero.setText("Agregar");
+        jb_agrhero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agrheroMouseClicked(evt);
+            }
+        });
+
+        jLabel16.setText("Heroes:");
+
+        javax.swing.GroupLayout HeroesLayout = new javax.swing.GroupLayout(Heroes.getContentPane());
+        Heroes.getContentPane().setLayout(HeroesLayout);
+        HeroesLayout.setHorizontalGroup(
+            HeroesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeroesLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jb_agrhero)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeroesLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(cb_heroes, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
+        );
+        HeroesLayout.setVerticalGroup(
+            HeroesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeroesLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(HeroesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_heroes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(60, 60, 60)
+                .addComponent(jb_agrhero)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        jb_agrvill.setText("Agregar");
+        jb_agrvill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agrvillMouseClicked(evt);
+            }
+        });
+
+        jLabel17.setText("Vllanos:");
+
+        javax.swing.GroupLayout VillanosLayout = new javax.swing.GroupLayout(Villanos.getContentPane());
+        Villanos.getContentPane().setLayout(VillanosLayout);
+        VillanosLayout.setHorizontalGroup(
+            VillanosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VillanosLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jb_agrvill)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VillanosLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(cb_villano, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
+        );
+        VillanosLayout.setVerticalGroup(
+            VillanosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VillanosLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(VillanosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_villano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
+                .addGap(60, 60, 60)
+                .addComponent(jb_agrvill)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        Modificar2.setText("Modificar");
+        Modificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Modificar2ActionPerformed(evt);
+            }
+        });
+        menuescuadrones.add(Modificar2);
+
+        Eliminar2.setText("Eliminar");
+        Eliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Eliminar2ActionPerformed(evt);
+            }
+        });
+        menuescuadrones.add(Eliminar2);
+
+        Asignar.setText("Asignar lider");
+        Menutree.add(Asignar);
+
+        Datos.setText("Datos");
+        Menutree.add(Datos);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,8 +258,6 @@ public class Lab5_DV extends javax.swing.JFrame {
         jLabel5.setText("Poder:");
 
         jLabel6.setText("Debilidad:");
-
-        jLabel7.setText("Escuadron:");
 
         jLabel8.setText("Agilidad mental:");
 
@@ -168,11 +301,6 @@ public class Lab5_DV extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_escuadron, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -235,12 +363,10 @@ public class Lab5_DV extends javax.swing.JFrame {
                     .addComponent(tf_debilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cb_escuadron, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(rb_villano)
                     .addComponent(rb_superheroe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -255,15 +381,105 @@ public class Lab5_DV extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar heroe o villano", jPanel1);
 
+        jLabel7.setText("Nombre:");
+
+        jLabel12.setText("Localidad de la base:");
+
+        jLabel13.setText("Tipo de escuadron:");
+
+        rb_heroes.setText("Heroes");
+
+        rb_villanos.setText("Villanos");
+
+        jl_escuadrones.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jl_escuadrones);
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Escuadrones");
+        jt_escuadrones.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_escuadrones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_escuadronesMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jt_escuadrones);
+
+        jLabel14.setText("Lista escuadrones");
+
+        jLabel15.setText("Arbol escuadrones");
+
+        jb_agregarescuadron.setText("Agregar escuadron");
+        jb_agregarescuadron.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agregarescuadronMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_base)
+                                    .addComponent(tf_escun, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rb_heroes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rb_villanos))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jb_agregarescuadron)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 431, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tf_escun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tf_base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(rb_heroes)
+                    .addComponent(rb_villanos))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jb_agregarescuadron)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel15))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Escuadron", jPanel2);
@@ -276,7 +492,7 @@ public class Lab5_DV extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 431, Short.MAX_VALUE)
+            .addGap(0, 446, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Simulacion", jPanel3);
@@ -286,9 +502,8 @@ public class Lab5_DV extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,35 +518,38 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void jb_agregarsuperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregarsuperMouseClicked
         // TODO add your handling code here:
-        nombres.add(tf_nombre.getText());
         int fuerza, agilment, agilfis;
         fuerza = Integer.parseInt(tf_fuerza.getText());
         agilment = Integer.parseInt(tf_agilmen.getText());
         agilfis = Integer.parseInt(tf_agilfis.getText());
         if (rb_villano.isSelected()) {
-            if (nombre(tf_nombre.getText())==false) {
+            if (ValidacionNombre(tf_nombre.getText()) == false) {
+                nombres.add(tf_nombre.getText());
                 if (fuerza + agilment + agilfis == 100) {
-                    Villano x = new Villano(tf_nombre.getText(), tf_poder.getText(), tf_debilidad.getText(), fuerza, agilfis, agilment); 
+                    Villano x = new Villano(tf_nombre.getText(), tf_poder.getText(), tf_debilidad.getText(), fuerza, agilfis, agilment);
                     villanos.add(x);
                     DefaultListModel modelo = (DefaultListModel) jl_villano.getModel();
                     modelo.addElement(x);
                     jl_villano.setModel(modelo);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Su humano no cumple con los requisitos para ser un villano lo sentimos");
                 }
             } else {
-               JOptionPane.showMessageDialog(null, "No se pueden repetir nombres");
+                JOptionPane.showMessageDialog(null, "No se pueden repetir nombres");
             }
         } else if (rb_superheroe.isSelected()) {
-            if (nombre(tf_nombre.getText())==false) {
+            if (ValidacionNombre(tf_nombre.getText()) == false) {
+                nombres.add(tf_nombre.getText());
                 if (fuerza + agilment + agilfis == 100) {
                     Heroe n = new Heroe(tf_nombre.getText(), tf_poder.getText(), tf_debilidad.getText(), fuerza, agilfis, agilment);
                     heroes.add(n);
                     DefaultListModel modelo = (DefaultListModel) jl_heroe.getModel();
                     modelo.addElement(n);
                     jl_heroe.setModel(modelo);
-                }else{
-                JOptionPane.showMessageDialog(null, "Su humano no cumple con los requisitos para ser un Heroe lo sentimos");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Su humano no cumple con los requisitos para ser un Heroe lo sentimos");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No se pueden repetir nombres");
@@ -341,7 +559,7 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void jl_heroeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_heroeMouseClicked
         // TODO add your handling code here:
-         if (jl_heroe.getSelectedIndex() >= 0) {
+        if (jl_heroe.getSelectedIndex() >= 0) {
             if (evt.isMetaDown()) {
                 menuheroe.show(evt.getComponent(),
                         evt.getX(), evt.getY());
@@ -352,7 +570,7 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void jl_villanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_villanoMouseClicked
         // TODO add your handling code here:
-         if (jl_villano.getSelectedIndex() >= 0) {
+        if (jl_villano.getSelectedIndex() >= 0) {
             if (evt.isMetaDown()) {
                 menuvillano.show(evt.getComponent(),
                         evt.getX(), evt.getY());
@@ -363,31 +581,369 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-         if (jl_heroe.getSelectedIndex() >= 0) {
-                DefaultListModel modelo
-                        = (DefaultListModel) jl_heroe.getModel();
-                modelo.remove(jl_heroe.getSelectedIndex());
-                jl_heroe.setModel(modelo);
-                JOptionPane.showMessageDialog(this,
-                        "Eliminado exitosamente");
-            }
+        if (jl_heroe.getSelectedIndex() >= 0) {
+            DefaultListModel modelo
+                    = (DefaultListModel) jl_heroe.getModel();
+            modelo.remove(jl_heroe.getSelectedIndex());
+            jl_heroe.setModel(modelo);
+            JOptionPane.showMessageDialog(this,
+                    "Eliminado exitosamente");
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void Elminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Elminar1ActionPerformed
         // TODO add your handling code here:
         if (jl_villano.getSelectedIndex() >= 0) {
-                DefaultListModel modelo
-                        = (DefaultListModel) jl_villano.getModel();
-                modelo.remove(jl_villano.getSelectedIndex());
-                jl_villano.setModel(modelo);
+            DefaultListModel modelo
+                    = (DefaultListModel) jl_villano.getModel();
+            modelo.remove(jl_villano.getSelectedIndex());
+            jl_villano.setModel(modelo);
+            JOptionPane.showMessageDialog(this,
+                    "Eliminado exitosamente");
+        }
+    }//GEN-LAST:event_Elminar1ActionPerformed
+
+    private void Modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar1ActionPerformed
+        // TODO add your handling code here:
+        if (jl_villano.getSelectedIndex() >= 0) {
+            int n = Integer.parseInt(JOptionPane.showInputDialog("1) Nombre \n" + "2) Debilidad\n" + "3) Poder\n" + "4) Atributos especiales(Fuerza,Agilidadmental,agilidad fisica)\n"));
+            switch (n) {
+                case 1:
+                    DefaultListModel modeloLISTA
+                            = (DefaultListModel) jl_villano.getModel();
+                    String name = JOptionPane.showInputDialog("Nuevo nombre");
+                    for (String nombre : nombres) {
+                        if (nombre.equals(((Villano) modeloLISTA.get(
+                                jl_villano.getSelectedIndex())).
+                                getNombre())) {
+                            nombres.remove(nombre);
+                            nombres.add(name);
+                        }
+                    }
+                    ((Villano) modeloLISTA.get(
+                            jl_villano.getSelectedIndex())).
+                            setNombre(name);
+                    jl_villano.setModel(modeloLISTA);
+
+                    break;
+                case 2:
+                    modeloLISTA
+                            = (DefaultListModel) jl_villano.getModel();
+                    ((Villano) modeloLISTA.get(
+                            jl_villano.getSelectedIndex())).
+                            setDebilidad(JOptionPane.showInputDialog("Nueva debilidad"));
+                    jl_villano.setModel(modeloLISTA);
+                    break;
+                case 3:
+                    modeloLISTA
+                            = (DefaultListModel) jl_villano.getModel();
+                    ((Villano) modeloLISTA.get(
+                            jl_villano.getSelectedIndex())).
+                            setPoder(JOptionPane.showInputDialog("Nuevo poder"));
+                    jl_villano.setModel(modeloLISTA);
+                    break;
+                case 4:
+                    int fuerza,
+                     agilment,
+                     agilfis;
+                    fuerza = Integer.parseInt(JOptionPane.showInputDialog("Nueva fuerza"));
+                    agilment = Integer.parseInt(JOptionPane.showInputDialog("Nueva agilidad mental"));
+                    agilfis = Integer.parseInt(JOptionPane.showInputDialog("Nueva agilidad fisica"));
+                    if (fuerza + agilment + agilfis == 100) {
+                        modeloLISTA
+                                = (DefaultListModel) jl_villano.getModel();
+                        ((Villano) modeloLISTA.get(
+                                jl_villano.getSelectedIndex())).
+                                setFuerza(fuerza);
+                        jl_villano.setModel(modeloLISTA);
+
+                        modeloLISTA
+                                = (DefaultListModel) jl_villano.getModel();
+                        ((Villano) modeloLISTA.get(
+                                jl_villano.getSelectedIndex())).
+                                setAgilment(agilment);
+                        jl_villano.setModel(modeloLISTA);
+
+                        modeloLISTA
+                                = (DefaultListModel) jl_villano.getModel();
+                        ((Villano) modeloLISTA.get(
+                                jl_villano.getSelectedIndex())).
+                                setAgilfis(agilfis);
+                        jl_villano.setModel(modeloLISTA);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Su humano no cumple con los requisitos para ser un Villano lo sentimos");
+                    }
+                    break;
+            }
+        }
+    }//GEN-LAST:event_Modificar1ActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        // TODO add your handling code here:
+        if (jl_heroe.getSelectedIndex() >= 0) {
+            int n = Integer.parseInt(JOptionPane.showInputDialog("1) Nombre \n" + "2) Debilidad\n" + "3) Poder\n" + "4) Atributos especiales(Fuerza,Agilidadmental,agilidad fisica)\n"));
+            switch (n) {
+                case 1:
+                    DefaultListModel modeloLISTA
+                            = (DefaultListModel) jl_heroe.getModel();
+                    String name = JOptionPane.showInputDialog("Nuevo nombre");
+                    for (String nombre : nombres) {
+                        if (nombre.equals(((Heroe) modeloLISTA.get(
+                                jl_heroe.getSelectedIndex())).
+                                getNombre())) {
+                            nombres.remove(nombre);
+                            nombres.add(name);
+                        }
+                    }
+                    ((Heroe) modeloLISTA.get(
+                            jl_heroe.getSelectedIndex())).
+                            setNombre(name);
+                    jl_heroe.setModel(modeloLISTA);
+
+                    break;
+                case 2:
+                    modeloLISTA
+                            = (DefaultListModel) jl_heroe.getModel();
+                    ((Heroe) modeloLISTA.get(
+                            jl_heroe.getSelectedIndex())).
+                            setDebilidad(JOptionPane.showInputDialog("Nueva debilidad"));
+                    jl_heroe.setModel(modeloLISTA);
+                    break;
+                case 3:
+                    modeloLISTA
+                            = (DefaultListModel) jl_heroe.getModel();
+                    ((Heroe) modeloLISTA.get(
+                            jl_heroe.getSelectedIndex())).
+                            setPoder(JOptionPane.showInputDialog("Nuevo poder"));
+                    jl_heroe.setModel(modeloLISTA);
+                    break;
+                case 4:
+                    int fuerza,
+                     agilment,
+                     agilfis;
+                    fuerza = Integer.parseInt(JOptionPane.showInputDialog("Nueva fuerza"));
+                    agilment = Integer.parseInt(JOptionPane.showInputDialog("Nueva agilidad mental"));
+                    agilfis = Integer.parseInt(JOptionPane.showInputDialog("Nueva agilidad fisica"));
+                    if (fuerza + agilment + agilfis == 100) {
+                        modeloLISTA
+                                = (DefaultListModel) jl_heroe.getModel();
+                        ((Heroe) modeloLISTA.get(
+                                jl_heroe.getSelectedIndex())).
+                                setFuerza(fuerza);
+                        jl_heroe.setModel(modeloLISTA);
+
+                        modeloLISTA
+                                = (DefaultListModel) jl_heroe.getModel();
+                        ((Heroe) modeloLISTA.get(
+                                jl_heroe.getSelectedIndex())).
+                                setAgilment(agilment);
+                        jl_heroe.setModel(modeloLISTA);
+
+                        modeloLISTA
+                                = (DefaultListModel) jl_heroe.getModel();
+                        ((Heroe) modeloLISTA.get(
+                                jl_heroe.getSelectedIndex())).
+                                setAgilfis(agilfis);
+                        jl_heroe.setModel(modeloLISTA);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Su humano no cumple con los requisitos para ser un Heroe lo sentimos");
+                    }
+                    break;
+            }
+        }
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void jb_agregarescuadronMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregarescuadronMouseClicked
+        // TODO add your handling code here:
+        if (rb_heroes.isSelected()) {
+            Heroes.pack();
+            Heroes.setLocationRelativeTo(null);
+            Heroes.setVisible(true);
+            DefaultComboBoxModel model = new DefaultComboBoxModel(heroes.toArray());
+            cb_heroes.setModel(model);
+        } else if (rb_villanos.isSelected()) {
+            DefaultComboBoxModel model = new DefaultComboBoxModel(villanos.toArray());
+            cb_villano.setModel(model);
+            Villanos.pack();
+            Villanos.setLocationRelativeTo(null);
+            Villanos.setVisible(true);
+        }
+    }//GEN-LAST:event_jb_agregarescuadronMouseClicked
+
+    private void jb_agrvillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agrvillMouseClicked
+        // TODO add your handling code here:
+        if (Validacionescuadron(tf_escun.getText()) == false) {
+            Escuadron e = new Escuadron(tf_escun.getText(), tf_base.getText(), (Villano) cb_villano.getSelectedItem(), "Villano");
+            ((Villano) cb_villano.getSelectedItem()).setEscuadron(e);
+            escuadrones.add(e);
+            DefaultListModel modelo = (DefaultListModel) jl_escuadrones.getModel();
+            modelo.addElement(e);
+            jl_escuadrones.setModel(modelo);
+            DefaultTreeModel m = (DefaultTreeModel) jt_escuadrones.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) m.getRoot();
+            DefaultMutableTreeNode nodo_escuadron;
+            nodo_escuadron = new DefaultMutableTreeNode(e.getNombre());
+            DefaultMutableTreeNode nodo_villano;
+            nodo_villano = new DefaultMutableTreeNode(((Villano) cb_villano.getSelectedItem()).getNombre());
+            DefaultMutableTreeNode nodo_debilidad;
+            nodo_debilidad = new DefaultMutableTreeNode(((Villano) cb_villano.getSelectedItem()).getDebilidad());
+            nodo_villano.add(nodo_debilidad);
+            nodo_escuadron.add(nodo_villano);
+            raiz.add(nodo_escuadron);
+            m.reload();
+        } else {
+            DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_escuadrones.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().
+                        equals(tf_escun.getText())) {
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    (Villano) cb_villano.getSelectedItem()
+                            );
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                } //fin if
+            } //fin for  
+
+            modeloARBOL.reload();
+        }
+        Villanos.setVisible(false);
+    }//GEN-LAST:event_jb_agrvillMouseClicked
+
+    private void jb_agrheroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agrheroMouseClicked
+        // TODO add your handling code here:
+        if (Validacionescuadron(tf_escun.getText()) == false) {
+            Escuadron e = new Escuadron(tf_escun.getText(), tf_base.getText(), (Heroe) cb_heroes.getSelectedItem(), "Heroes");
+            ((Heroe) cb_heroes.getSelectedItem()).setEscuadron(e);
+            escuadrones.add(e);
+            DefaultListModel modelo = (DefaultListModel) jl_escuadrones.getModel();
+            modelo.addElement(e);
+            jl_escuadrones.setModel(modelo);
+            DefaultTreeModel m = (DefaultTreeModel) jt_escuadrones.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) m.getRoot();
+            DefaultMutableTreeNode nodo_escuadron;
+            nodo_escuadron = new DefaultMutableTreeNode(e.getNombre());
+            DefaultMutableTreeNode nodo_heroe;
+            nodo_heroe = new DefaultMutableTreeNode(((Heroe) cb_heroes.getSelectedItem()).getNombre());
+            DefaultMutableTreeNode nodo_poder;
+            nodo_poder = new DefaultMutableTreeNode(((Heroe) cb_heroes.getSelectedItem()).getPoder());
+            nodo_heroe.add(nodo_poder);
+            nodo_escuadron.add(nodo_heroe);
+            raiz.add(nodo_escuadron);
+            m.reload();
+        } else {
+            DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_escuadrones.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().
+                        equals(tf_escun.getText())) {
+                    DefaultMutableTreeNode s
+                            = new DefaultMutableTreeNode(
+                                    ((Heroe) cb_heroes.getSelectedItem()).getPoder()
+                            );
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    ((Heroe) cb_heroes.getSelectedItem()).getNombre()
+                            );
+                    p.add(s);
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                } //fin if
+            } //fin for  
+
+            modeloARBOL.reload();
+        }
+        Heroes.setVisible(false);
+    }//GEN-LAST:event_jb_agrheroMouseClicked
+
+    private void Modificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar2ActionPerformed
+        // TODO add your handling code here:
+        if (jl_heroe.getSelectedIndex() >= 0) {
+            int n = Integer.parseInt(JOptionPane.showInputDialog("1) Nombre \n" + "2) Localidad"));
+            switch (n) {
+                case 1:
+                    String name = JOptionPane.showInputDialog("Nuevo nombre");
+                    DefaultListModel modeloLISTA
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    ((Escuadron) modeloLISTA.get(
+                            jl_escuadrones.getSelectedIndex())).
+                            setNombre(name);
+                    jl_escuadrones.setModel(modeloLISTA);
+                    for (Escuadron nombre : escuadrones) {
+                        if (nombre.getNombre().equals(((Escuadron) modeloLISTA.get(jl_escuadrones.getSelectedIndex())).getNombre())) {
+                            nombre.setNombre(name);
+                        }
+                    }
+                    break;
+
+                case 2:
+                    modeloLISTA
+                            = (DefaultListModel) jl_escuadrones.getModel();
+                    ((Escuadron) modeloLISTA.get(
+                            jl_escuadrones.getSelectedIndex())).
+                            setNombre(JOptionPane.showInputDialog("Nueva localidad"));
+                    jl_escuadrones.setModel(modeloLISTA);
+                    break;
+            }
+        }
+    }//GEN-LAST:event_Modificar2ActionPerformed
+
+    private void Eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar2ActionPerformed
+        // TODO add your handling code here:
+        if (jl_escuadrones.getSelectedIndex() >= 0) {
+            DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+            String tipo = ((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex())).getTipo();
+            if (tipo.equals("Heroes")) {
+                for (Heroe h : heroes) {
+                    if (h.getEscuadron().equals((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex()))) {
+                        heroes.remove(h);
+                    }
+                }
+            } else {
+                for (Villano v : villanos) {
+                    if (v.getEscuadron().equals((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex()))) {
+                        villanos.remove(v);
+                    }
+                }
+            }
+                modelo.remove(jl_escuadrones.getSelectedIndex());
+                jl_escuadrones.setModel(modelo);
                 JOptionPane.showMessageDialog(this,
                         "Eliminado exitosamente");
             }
-    }//GEN-LAST:event_Elminar1ActionPerformed
+    }//GEN-LAST:event_Eliminar2ActionPerformed
+
+    private void jt_escuadronesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_escuadronesMouseClicked
+        // TODO add your handling code here:
+          if (evt.isMetaDown()) {
+            //seleccionar un nodo con click derecho
+            int row = jt_escuadrones.getClosestRowForLocation(
+                    evt.getX(), evt.getY());
+            jt_escuadrones.setSelectionRow(row);
+            Object v1
+                    = jt_escuadrones.getSelectionPath().
+                    getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Superhumano) {
+                persona_seleccionada
+                        = (Superhumano) nodo_seleccionado.
+                        getUserObject();
+                Menutree.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }
+
+        }
+    }//GEN-LAST:event_jt_escuadronesMouseClicked
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -420,29 +976,49 @@ public class Lab5_DV extends javax.swing.JFrame {
         });
     }
 
-    static boolean nombre(String g) {
-        boolean existe = false;
-        for (String nombre : nombres) {
-            if (nombre.equals(g)) {
-                existe = true;
-                return existe;
-            } else {
-                return existe;
-            }
-        }
-        return existe;
-    }
+    public boolean ValidacionNombre(String nombre) {
+        for (int i = 0; i < nombres.size(); i++) {
+            if (nombres.get(i).equals(nombre)) {
+                return true;
+            } // Fin If
+        } // Fin For
+        return false;
+    } // Fin Validacion Nombre Existente
+
+    public boolean Validacionescuadron(String nombre) {
+        for (int i = 0; i < escuadrones.size(); i++) {
+            if (escuadrones.get(i).getNombre().equals(nombre)) {
+                return true;
+            } // Fin If
+        } // Fin For
+        return false;
+    } // Fin Validacion Nombre Existente
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Asignar;
+    private javax.swing.JMenuItem Datos;
     private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Eliminar2;
     private javax.swing.JMenuItem Elminar1;
+    private javax.swing.JFrame Heroes;
+    private javax.swing.JPopupMenu Menutree;
     private javax.swing.JMenuItem Modificar;
     private javax.swing.JMenuItem Modificar1;
+    private javax.swing.JMenuItem Modificar2;
+    private javax.swing.JFrame Villanos;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cb_escuadron;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cb_heroes;
+    private javax.swing.JComboBox<String> cb_villano;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -456,19 +1032,33 @@ public class Lab5_DV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jb_agregarescuadron;
     private javax.swing.JButton jb_agregarsuper;
+    private javax.swing.JButton jb_agrhero;
+    private javax.swing.JButton jb_agrvill;
+    private javax.swing.JList<String> jl_escuadrones;
     private javax.swing.JList<String> jl_heroe;
     private javax.swing.JList<String> jl_villano;
+    private javax.swing.JTree jt_escuadrones;
+    private javax.swing.JPopupMenu menuescuadrones;
     private javax.swing.JPopupMenu menuheroe;
     private javax.swing.JPopupMenu menuvillano;
+    private javax.swing.JRadioButton rb_heroes;
     private javax.swing.JRadioButton rb_superheroe;
     private javax.swing.JRadioButton rb_villano;
+    private javax.swing.JRadioButton rb_villanos;
     private javax.swing.JTextField tf_agilfis;
     private javax.swing.JTextField tf_agilmen;
+    private javax.swing.JTextField tf_base;
     private javax.swing.JTextField tf_debilidad;
+    private javax.swing.JTextField tf_escun;
     private javax.swing.JTextField tf_fuerza;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_poder;
     // End of variables declaration//GEN-END:variables
+DefaultMutableTreeNode nodo_seleccionado;
+Superhumano persona_seleccionada;
 }
