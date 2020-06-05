@@ -102,6 +102,11 @@ public class Lab5_DV extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jb_agregarescuadron = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        cb_escuadron1 = new javax.swing.JComboBox<>();
+        cb_escuadron2 = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jb_simulacion = new javax.swing.JButton();
 
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +140,7 @@ public class Lab5_DV extends javax.swing.JFrame {
         });
         menuvillano.add(Elminar1);
 
-        jb_agrhero.setText("Agregar");
+        jb_agrhero.setText("Asignar lider");
         jb_agrhero.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_agrheroMouseClicked(evt);
@@ -224,12 +229,28 @@ public class Lab5_DV extends javax.swing.JFrame {
         menuescuadrones.add(Eliminar2);
 
         Asignar.setText("Asignar lider");
+        Asignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AsignarActionPerformed(evt);
+            }
+        });
         Menutree.add(Asignar);
 
         Datos.setText("Datos");
+        Datos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DatosActionPerformed(evt);
+            }
+        });
         Menutree.add(Datos);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jl_heroe.setModel(new DefaultListModel());
         jl_heroe.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -484,15 +505,57 @@ public class Lab5_DV extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar Escuadron", jPanel2);
 
+        jLabel18.setText("Primer escuadron");
+
+        jLabel19.setText("Segundo escuadron");
+
+        jb_simulacion.setText("Simulacion");
+        jb_simulacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_simulacionMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cb_escuadron1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel19)
+                        .addGap(129, 129, 129))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(cb_escuadron2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(104, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(jb_simulacion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_escuadron1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_escuadron2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(jb_simulacion)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Simulacion", jPanel3);
@@ -523,7 +586,7 @@ public class Lab5_DV extends javax.swing.JFrame {
         agilment = Integer.parseInt(tf_agilmen.getText());
         agilfis = Integer.parseInt(tf_agilfis.getText());
         if (rb_villano.isSelected()) {
-            if (ValidacionNombre(tf_nombre.getText()) == false) {
+            if (validacionNombre(tf_nombre.getText()) == false) {
                 nombres.add(tf_nombre.getText());
                 if (fuerza + agilment + agilfis == 100) {
                     Villano x = new Villano(tf_nombre.getText(), tf_poder.getText(), tf_debilidad.getText(), fuerza, agilfis, agilment);
@@ -539,7 +602,7 @@ public class Lab5_DV extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No se pueden repetir nombres");
             }
         } else if (rb_superheroe.isSelected()) {
-            if (ValidacionNombre(tf_nombre.getText()) == false) {
+            if (validacionNombre(tf_nombre.getText()) == false) {
                 nombres.add(tf_nombre.getText());
                 if (fuerza + agilment + agilfis == 100) {
                     Heroe n = new Heroe(tf_nombre.getText(), tf_poder.getText(), tf_debilidad.getText(), fuerza, agilfis, agilment);
@@ -772,7 +835,7 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void jb_agrvillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agrvillMouseClicked
         // TODO add your handling code here:
-        if (Validacionescuadron(tf_escun.getText()) == false) {
+        if (validacionescuadron(tf_escun.getText()) == false) {
             Escuadron e = new Escuadron(tf_escun.getText(), tf_base.getText(), (Villano) cb_villano.getSelectedItem(), "Villano");
             ((Villano) cb_villano.getSelectedItem()).setEscuadron(e);
             escuadrones.add(e);
@@ -815,7 +878,7 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void jb_agrheroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agrheroMouseClicked
         // TODO add your handling code here:
-        if (Validacionescuadron(tf_escun.getText()) == false) {
+        if (validacionescuadron(tf_escun.getText()) == false) {
             Escuadron e = new Escuadron(tf_escun.getText(), tf_base.getText(), (Heroe) cb_heroes.getSelectedItem(), "Heroes");
             ((Heroe) cb_heroes.getSelectedItem()).setEscuadron(e);
             escuadrones.add(e);
@@ -900,40 +963,36 @@ public class Lab5_DV extends javax.swing.JFrame {
                     = (DefaultListModel) jl_escuadrones.getModel();
             String tipo = ((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex())).getTipo();
             if (tipo.equals("Heroes")) {
-                for (Heroe h : heroes) {
-                    if (h.getEscuadron().equals((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex()))) {
-                        heroes.remove(h);
-                    }
-                }
+                heroes.stream().filter((h) -> (h.getEscuadron().equals((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex())))).forEachOrdered((h) -> {
+                    heroes.remove(h);
+                });
             } else {
-                for (Villano v : villanos) {
-                    if (v.getEscuadron().equals((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex()))) {
-                        villanos.remove(v);
-                    }
-                }
+                villanos.stream().filter((v) -> (v.getEscuadron().equals((Escuadron) modelo.get(jl_escuadrones.getSelectedIndex())))).forEachOrdered((v) -> {
+                    villanos.remove(v);
+                });
             }
-                modelo.remove(jl_escuadrones.getSelectedIndex());
-                jl_escuadrones.setModel(modelo);
-                JOptionPane.showMessageDialog(this,
-                        "Eliminado exitosamente");
-            }
+            modelo.remove(jl_escuadrones.getSelectedIndex());
+            jl_escuadrones.setModel(modelo);
+            JOptionPane.showMessageDialog(this,
+                    "Eliminado exitosamente");
+        }
     }//GEN-LAST:event_Eliminar2ActionPerformed
 
     private void jt_escuadronesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_escuadronesMouseClicked
         // TODO add your handling code here:
-          if (evt.isMetaDown()) {
+        if (evt.isMetaDown()) {
             //seleccionar un nodo con click derecho
             int row = jt_escuadrones.getClosestRowForLocation(
                     evt.getX(), evt.getY());
             jt_escuadrones.setSelectionRow(row);
             Object v1
                     = jt_escuadrones.getSelectionPath().
-                    getLastPathComponent();
+                            getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
             if (nodo_seleccionado.getUserObject() instanceof Superhumano) {
                 persona_seleccionada
                         = (Superhumano) nodo_seleccionado.
-                        getUserObject();
+                                getUserObject();
                 Menutree.show(evt.getComponent(),
                         evt.getX(), evt.getY());
             }
@@ -941,9 +1000,95 @@ public class Lab5_DV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jt_escuadronesMouseClicked
 
+    private void DatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatosActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Nombre:" + persona_seleccionada.getNombre() + "\n" + "Poder:" + persona_seleccionada.getPoder() + "\n" + "Debilidad:" + persona_seleccionada.getDebilidad() + "\n" + "Fuerza:" + persona_seleccionada.getFuerza() + "\n" + "Agilidad mental:" + persona_seleccionada.getAgilment() + "\n" + "Agilidad fisica:" + persona_seleccionada.getAgilfis());
+    }//GEN-LAST:event_DatosActionPerformed
+
+    private void AsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AsignarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AsignarActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        // TODO add your handling code here:
+        if (jTabbedPane1.getSelectedIndex() == 2) {
+            DefaultComboBoxModel model = new DefaultComboBoxModel(escuadrones.toArray());
+            cb_escuadron1.setModel(model);
+            cb_escuadron2.setModel(model);
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void jb_simulacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_simulacionMouseClicked
+        // TODO add your handling code here:
+
+        int af = ((Escuadron) cb_escuadron1.getSelectedItem()).getLider().getAgilfis();
+        int am = ((Escuadron) cb_escuadron1.getSelectedItem()).getLider().getAgilment();
+        int f = ((Escuadron) cb_escuadron1.getSelectedItem()).getLider().getFuerza();
+        int af2 = ((Escuadron) cb_escuadron2.getSelectedItem()).getLider().getAgilfis();
+        int am2 = ((Escuadron) cb_escuadron2.getSelectedItem()).getLider().getAgilment();
+        int f2 = ((Escuadron) cb_escuadron2.getSelectedItem()).getLider().getFuerza();
+        int n = Integer.parseInt(JOptionPane.showInputDialog("1) Fuerza \n" + "2) Agilidad mental\n" + "3) Agilidad fisica"));
+        switch (n) {
+            case 1:
+                JOptionPane.showMessageDialog(null, "Fuerza 1:" + f + "\nFuerza 2:" + f2);
+                if (f > f2) {
+                    JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron1.getSelectedItem()).getNombre());
+                        DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+                        modelo.remove(cb_escuadron2.getSelectedIndex());
+                        jl_escuadrones.setModel(modelo);                               
+                } else if (f2 > f) {
+                    JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron2.getSelectedItem()).getNombre());
+                       DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+                        modelo.remove(cb_escuadron1.getSelectedIndex());
+                        jl_escuadrones.setModel(modelo);
+                } else if (f == f2) {
+                    JOptionPane.showMessageDialog(null, "Es un empate");
+                }
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Agilidad mental 1:" + am2 + "\nAgilidad mental 2:" + am2);
+                if (am>am2) {
+                    JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron1.getSelectedItem()).getNombre());
+                       DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+                        modelo.remove(cb_escuadron2.getSelectedIndex());
+                        jl_escuadrones.setModel(modelo);
+                } else if (am2 > am) {
+                    JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron2.getSelectedItem()).getNombre());
+                      DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+                        modelo.remove(cb_escuadron1.getSelectedIndex());
+                        jl_escuadrones.setModel(modelo);
+                } else if (am == am2) {
+                    JOptionPane.showMessageDialog(null, "Es un empate");
+                }
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "Agilidad fisica 1:" + af + "\nAgilidad fisica 2:" + af2);
+                if (af > af2) {
+                    JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron1.getSelectedItem()).getNombre());
+                       DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+                        modelo.remove(cb_escuadron2.getSelectedIndex());
+                        jl_escuadrones.setModel(modelo);
+                } else if (af2 > af) {
+                    JOptionPane.showMessageDialog(null, "Gana el escuadron " + ((Escuadron) cb_escuadron2.getSelectedItem()).getNombre());
+                      DefaultListModel modelo
+                    = (DefaultListModel) jl_escuadrones.getModel();
+                        modelo.remove(cb_escuadron1.getSelectedIndex());
+                        jl_escuadrones.setModel(modelo);
+                } else if (af == af2) {
+                    JOptionPane.showMessageDialog(null, "Es un empate");
+                }
+                break;
+        }
+    }//GEN-LAST:event_jb_simulacionMouseClicked
+
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -976,7 +1121,7 @@ public class Lab5_DV extends javax.swing.JFrame {
         });
     }
 
-    public boolean ValidacionNombre(String nombre) {
+    public boolean validacionNombre(String nombre) {
         for (int i = 0; i < nombres.size(); i++) {
             if (nombres.get(i).equals(nombre)) {
                 return true;
@@ -985,7 +1130,7 @@ public class Lab5_DV extends javax.swing.JFrame {
         return false;
     } // Fin Validacion Nombre Existente
 
-    public boolean Validacionescuadron(String nombre) {
+    public boolean validacionescuadron(String nombre) {
         for (int i = 0; i < escuadrones.size(); i++) {
             if (escuadrones.get(i).getNombre().equals(nombre)) {
                 return true;
@@ -1008,6 +1153,8 @@ public class Lab5_DV extends javax.swing.JFrame {
     private javax.swing.JFrame Villanos;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cb_escuadron1;
+    private javax.swing.JComboBox<String> cb_escuadron2;
     private javax.swing.JComboBox<String> cb_heroes;
     private javax.swing.JComboBox<String> cb_villano;
     private javax.swing.JLabel jLabel1;
@@ -1019,6 +1166,8 @@ public class Lab5_DV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1039,6 +1188,7 @@ public class Lab5_DV extends javax.swing.JFrame {
     private javax.swing.JButton jb_agregarsuper;
     private javax.swing.JButton jb_agrhero;
     private javax.swing.JButton jb_agrvill;
+    private javax.swing.JButton jb_simulacion;
     private javax.swing.JList<String> jl_escuadrones;
     private javax.swing.JList<String> jl_heroe;
     private javax.swing.JList<String> jl_villano;
@@ -1060,5 +1210,5 @@ public class Lab5_DV extends javax.swing.JFrame {
     private javax.swing.JTextField tf_poder;
     // End of variables declaration//GEN-END:variables
 DefaultMutableTreeNode nodo_seleccionado;
-Superhumano persona_seleccionada;
+    Superhumano persona_seleccionada;
 }
