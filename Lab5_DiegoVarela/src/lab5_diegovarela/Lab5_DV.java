@@ -869,7 +869,7 @@ public class Lab5_DV extends javax.swing.JFrame {
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 if (raiz.getChildAt(i).toString().
                         equals(tf_escun.getText())) {
-                      DefaultMutableTreeNode s
+                    DefaultMutableTreeNode s
                             = new DefaultMutableTreeNode(
                                     ((Villano) cb_villano.getSelectedItem()).getDebilidad()
                             );
@@ -877,7 +877,7 @@ public class Lab5_DV extends javax.swing.JFrame {
                             = new DefaultMutableTreeNode(
                                     ((Villano) cb_villano.getSelectedItem()).getNombre()
                             );
-                     p.add(s);
+                    p.add(s);
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                 } //fin if
             } //fin for  
@@ -1000,9 +1000,15 @@ public class Lab5_DV extends javax.swing.JFrame {
                     = jt_escuadrones.getSelectionPath().
                             getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
-            if (nodo_seleccionado.getUserObject() instanceof Superhumano) {
+            if (nodo_seleccionado.getUserObject() instanceof Heroe) {
                 persona_seleccionada
-                        = (Superhumano) nodo_seleccionado.
+                        = (Heroe) nodo_seleccionado.
+                                getUserObject();
+                Menutree.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }else if (nodo_seleccionado.getUserObject() instanceof Villano) {
+                persona_seleccionada
+                        = (Villano) nodo_seleccionado.
                                 getUserObject();
                 Menutree.show(evt.getComponent(),
                         evt.getX(), evt.getY());
@@ -1018,7 +1024,7 @@ public class Lab5_DV extends javax.swing.JFrame {
 
     private void AsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AsignarActionPerformed
         // TODO add your handling code here:
-persona_seleccionada.getEscuadron().setLider(persona_seleccionada);
+        persona_seleccionada.getEscuadron().setLider(persona_seleccionada);
     }//GEN-LAST:event_AsignarActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
@@ -1106,7 +1112,7 @@ persona_seleccionada.getEscuadron().setLider(persona_seleccionada);
 
     private void jl_escuadronesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_escuadronesMouseClicked
         // TODO add your handling code here:
-         if (jl_escuadrones.getSelectedIndex() >= 0) {
+        if (jl_escuadrones.getSelectedIndex() >= 0) {
             if (evt.isMetaDown()) {
                 menuescuadrones.show(evt.getComponent(),
                         evt.getX(), evt.getY());
