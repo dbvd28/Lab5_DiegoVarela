@@ -141,10 +141,15 @@ public class Lab5_DV extends javax.swing.JFrame {
         });
         menuvillano.add(Elminar1);
 
-        jb_agrhero.setText("Asignar lider");
+        jb_agrhero.setText("Asignar ");
         jb_agrhero.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_agrheroMouseClicked(evt);
+            }
+        });
+        jb_agrhero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_agrheroActionPerformed(evt);
             }
         });
 
@@ -388,7 +393,7 @@ public class Lab5_DV extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(rb_villano)
                     .addComponent(rb_superheroe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -506,7 +511,7 @@ public class Lab5_DV extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Escuadron", jPanel2);
@@ -556,12 +561,12 @@ public class Lab5_DV extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cb_escuadron1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_escuadron2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(81, 81, 81)
                 .addComponent(jb_simulacion)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Simulacion", jPanel3);
@@ -576,10 +581,7 @@ public class Lab5_DV extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jTabbedPane1)
-                .addGap(24, 24, 24))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -998,18 +1000,13 @@ public class Lab5_DV extends javax.swing.JFrame {
             jt_escuadrones.setSelectionRow(row);
             Object v1
                     = jt_escuadrones.getSelectionPath().
-                            getLastPathComponent();
+                    getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
-            if (nodo_seleccionado.getUserObject() instanceof Heroe) {
+            if (nodo_seleccionado.getUserObject() instanceof Superhumano) {
+                Superhumano superhumano = (Superhumano) nodo_seleccionado.getUserObject();
                 persona_seleccionada
-                        = (Heroe) nodo_seleccionado.
-                                getUserObject();
-                Menutree.show(evt.getComponent(),
-                        evt.getX(), evt.getY());
-            }else if (nodo_seleccionado.getUserObject() instanceof Villano) {
-                persona_seleccionada
-                        = (Villano) nodo_seleccionado.
-                                getUserObject();
+                        = (Superhumano) nodo_seleccionado.
+                        getUserObject();
                 Menutree.show(evt.getComponent(),
                         evt.getX(), evt.getY());
             }
@@ -1120,6 +1117,10 @@ public class Lab5_DV extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jl_escuadronesMouseClicked
+
+    private void jb_agrheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agrheroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_agrheroActionPerformed
 
     /**
      * @param args the command line arguments
